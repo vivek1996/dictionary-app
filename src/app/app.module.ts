@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-
+import { ReactiveFormsModule } from '@angular/forms'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // mdb import
@@ -15,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { AboutComponent } from './about/about.component';
-// import { NgProgressRouterModule } from '@ngx-progressbar/router';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +25,7 @@ import { AboutComponent } from './about/about.component';
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgProgressModule.forRoot(),
     NgProgressHttpModule,

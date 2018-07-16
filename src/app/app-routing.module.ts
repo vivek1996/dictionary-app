@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FullViewComponent } from './full-view/full-view.component';
 import { SearchComponent } from './search/search.component';
 import { AboutComponent } from './about/about.component';
 const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'about', component: AboutComponent },
-  // { path: 'region/:region', component: AllCountriesComponent },
-  // { path: 'country/:name', component: SingleCountryComponent },
+  { path: 'definition:word', component: FullViewComponent },
   { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: '**', component: SearchComponent }
 ];

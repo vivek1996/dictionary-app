@@ -5,8 +5,16 @@
       <h1 class="heading display-4">On the go? Never miss a single word!</h1>
       <br>
       <div class="form-inline m-auto mb-4 w-100 flex-center">
-        <input class="form-control" type="text" placeholder="Enter a Word" aria-label="Search">
+        <input #searchBox id="search-box" (keyup)="search(searchBox.value)" class="form-control" type="text" placeholder="Enter a Word"
+          aria-label="Search">
         <button class="btn btn-outline-primary btn-rounded btn-sm my-3 waves-light" mdbWavesEffect type="submit">Search</button>
+        <ul class="search-result">
+          <li *ngFor="let word of wordList.results">
+            <a routerLink="/definition/{{word.id}}">
+              {{word.word}}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>

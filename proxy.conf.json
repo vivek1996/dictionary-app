@@ -9,6 +9,6 @@
       "app_id": "cb35ef20",
       "app_key": "603be016c344650e6d8c1da15330f7af"
     },
-    "pathRewrite": { "^/oxfordapi": "" }
+    "pathRewrite": { "^/api": "" }
   }
 }

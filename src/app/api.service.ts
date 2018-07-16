@@ -8,8 +8,6 @@ export class ApiService {
   constructor(private http: HttpClient) {}
   // Service to get data
   getWords(word: string) {
-    return this.http.get(
-      '/api/' + 'search/' + 'en' + '?q=' + word + '&prefix=true' + '&limit=10'
-    );
+    return this.http.get(`/api/search/en?q=${word}&prefix=false&limit=10`);
   }
 }
