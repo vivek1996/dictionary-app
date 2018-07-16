@@ -14,12 +14,14 @@ import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { AboutComponent } from './about/about.component';
 // import { NgProgressRouterModule } from '@ngx-progressbar/router';
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
-    FullViewComponent
+    FullViewComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

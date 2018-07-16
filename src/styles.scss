@@ -4,3 +4,44 @@
 // body{
 //     font-family: 'Montserrat', sans-serif;
 // }
+// body {
+//   // background-color: rgb(38, 121, 168);
+//   background-image: url('./assets/cool-background.svg');
+//   background-position: center;
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   //   -webkit-clip-path: polygon(100% 12%, 0% 100%, 100% 100%);
+//   //   clip-path: polygon(100% 12%, 0% 100%, 100% 100%);
+//   color: black;
+// }
+
+// body {
+//   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#4a00fb+0,e600ff+100 */
+//   background: #4a00fb; /* Old browsers */
+//   background: -moz-linear-gradient(
+//     45deg,
+//     #4a00fb 0%,
+//     #e600ff 100%
+//   ); /* FF3.6-15 */
+//   background: -webkit-linear-gradient(
+//     45deg,
+//     #4a00fb 0%,
+//     #e600ff 100%
+//   ); /* Chrome10-25,Safari5.1-6 */
+//   background: linear-gradient(
+//     45deg,
+//     #4a00fb 0%,
+//     #e600ff 100%
+//   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+//   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4a00fb', endColorstr='#e600ff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+//   background-repeat: no-repeat;
+//   background-attachment: fixed;
+// }
+body {
+  background: white url('./assets/bg.svg') no-repeat bottom right;
+  // padding: 4em;
+  // background-size: 85%;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

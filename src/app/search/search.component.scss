@@ -1,0 +1,22 @@
+.view {
+  height: 80vh;
+}
+.card-body {
+  padding: 0;
+}
+.btn-rounded {
+  border-radius: 10em;
+}
+.form-control {
+  border-radius: 5em;
+}
+.form-control:focus {
+  color: #2e3031;
+  background-color: #fff;
+  border-color: #4339e2;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(66, 64, 228, 0.62);
+}
+.heading {
+  color: #6a3cc5;
+}
