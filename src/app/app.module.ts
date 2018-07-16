@@ -7,9 +7,13 @@ import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { SearchComponent } from './search/search.component';
+import { FullViewComponent } from './full-view/full-view.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SearchComponent,
+    FullViewComponent
   ],
   imports: [
     BrowserModule,
