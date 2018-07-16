@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // mdb import
@@ -10,11 +10,11 @@ import { environment } from '../environments/environment';
 import { SearchComponent } from './search/search.component';
 import { FullViewComponent } from './full-view/full-view.component';
 import { ApiService } from './api.service';
-// Progress Bar Import
 import { HttpClientModule } from '@angular/common/http';
+import { AboutComponent } from './about/about.component';
+// Progress Bar Import
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
-import { AboutComponent } from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -29,13 +29,14 @@ import { AboutComponent } from './about/about.component';
     HttpClientModule,
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
-   // NgProgressRouterModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('/ngsw-worker.js', {
+      enabled: environment.production
+    })
   ],
-  schemas: [ NO_ERRORS_SCHEMA ],
+  schemas: [NO_ERRORS_SCHEMA],
   providers: [ApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
