@@ -8,10 +8,12 @@
   border-radius: 10em;
 }
 .form-control {
-  border-radius: 5em;
+  border-radius: 1rem;
+  border: 1px solid #007bff;
 }
 .form-control:focus {
   color: #2e3031;
+  font-weight: 400;
   background-color: #fff;
   border-color: #4339e2;
   outline: 0;

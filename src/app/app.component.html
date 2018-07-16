@@ -1,17 +1,17 @@
 <header>
   <mdb-navbar SideClass="navbar fixed-top navbar-expand-md navbar-dark  purple accent-4 scrolling-navbar  ie-nav" [containerInside]="false">
     <logo>
-      <a class="logo navbar-brand" href="#">
+      <a class="logo navbar-brand" routerLink="/">
         <img src="../assets/icons.svg" alt="Lexicon">
       </a>
     </logo>
     <links>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active waves-light" mdbWavesEffect>
-          <a class="nav-link black-text">Home</a>
+        <li class="nav-item active waves-light" routerLinkActive=" active" mdbWavesEffect>
+          <a class="nav-link black-text" routerLink="/">Home</a>
         </li>
-        <li class="nav-item waves-light" mdbWavesEffect>
-          <a class="nav-link black-text">About</a>
+        <li class="nav-item waves-light" routerLinkActive=" active" mdbWavesEffect>
+          <a class="nav-link black-text" routerLink="/about">About</a>
         </li>
       </ul>
     </links>
