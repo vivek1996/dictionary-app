@@ -2,12 +2,13 @@
   <ng-progress></ng-progress>
   <div class="mask  flex-center">
     <div class="container text-center">
-      <h1 class="heading display-4">On the go? Never miss a single word!</h1>
+      <h1 class="heading display-4 d-none d-md-block">On the go? Never miss a single word!</h1>
+      <h3 class="heading d-md-none">On the go? Never miss a single word!</h3>
       <br>
       <div class="form-inline m-auto mb-4 w-100 flex-center">
-        <input [formControl]="searchField" class="form-control" type="text" placeholder="Enter a Word">
+        <input [formControl]="searchField" class="form-control" type="search" placeholder="Enter a Word">
         <button class="btn btn-outline-primary btn-rounded btn-sm my-3 waves-light" mdbWavesEffect type="submit">Search</button>
-        <ul class="search-result" *ngIf="wordList">
+        <ul class="autocomplete-wrap" *ngIf="wordList">
           <li *ngFor="let word of wordList.results">
             <a routerLink="/definition/{{word.id}}">
               {{word.word}}
