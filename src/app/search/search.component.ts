@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+  filter,
+  skip
+} from 'rxjs/operators';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,20 +20,45 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
     this.searchField.valueChanges
       .pipe(
-        debounceTime(200),
+        filter(value => !value || value.length > 2 || value !== ''),
+        debounceTime(300),
         distinctUntilChanged(),
+        filter(value => value !== ''),
         switchMap(query => this.http.getWords(query))
       )
-      .subscribe(data => {
-        this.wordList = data;
-        console.log(this.wordList);
-        console.log(this.searchField);
-      });
+      .subscribe(
+        data => {
+          this.wordList = '';
+          this.wordList = data;
+          console.log(this.wordList);
+          console.log(this.searchField);
+        },
+        error => {
+          console.log(error);
+        }
+      );
   }
-  search(value) {
-    this.http.getWords(value).subscribe(data => {
-      this.wordList = data;
-      console.log(this.wordList);
-    });
-  }
+  // search() {
+  //   if (this.searchField.value === ' ') {
+  //     this.wordList = ' ';
+  //   } else if (this.searchField.value.length > 3) {
+  //     this.searchField.valueChanges
+  //       .pipe(
+  //         skip(3),
+  //         debounceTime(200),
+  //         distinctUntilChanged(),
+  //         switchMap(query => this.http.getWords(query))
+  //       )
+  //       .subscribe(
+  //         data => {
+  //           this.wordList = data;
+  //           console.log(this.wordList);
+  //           console.log(this.searchField);
+  //         },
+  //         error => {
+  //           console.log(error);
+  //         }
+  //       );
+  //   }
+  // }
 }

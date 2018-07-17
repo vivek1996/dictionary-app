@@ -9,7 +9,7 @@
         <input [formControl]="searchField" class="form-control" type="search" placeholder="Enter a Word">
         <button class="btn btn-outline-primary btn-rounded btn-sm my-3 waves-light" mdbWavesEffect type="submit">Search</button>
         <ul class="autocomplete-wrap" *ngIf="wordList">
-          <li *ngFor="let word of wordList.results">
+          <li *ngFor="let word of wordList.results ">
             <a routerLink="/definition/{{word.id}}">
               {{word.word}}
             </a>
