@@ -24,14 +24,14 @@ export class SearchComponent implements OnInit {
         debounceTime(300),
         distinctUntilChanged(),
         filter(value => value !== ''),
-        switchMap(query => this.http.getWords(query))
+        // prettier-ignore
+        switchMap( query => query.length > 2 ? this.http.getWords(query) : this.wordList = '')
       )
       .subscribe(
         data => {
           this.wordList = '';
           this.wordList = data;
           console.log(this.wordList);
-          console.log(this.searchField);
         },
         error => {
           console.log(error);
