@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   debounceTime,
   distinctUntilChanged,
@@ -15,7 +16,8 @@ import {
 })
 export class SearchComponent implements OnInit {
   wordList: any;
-  constructor(private http: ApiService) {}
+  constructor( private route: ActivatedRoute,
+    private router: Router, private http: ApiService) {}
   searchField: FormControl = new FormControl();
   ngOnInit() {
     this.searchField.valueChanges

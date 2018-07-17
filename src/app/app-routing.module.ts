@@ -6,7 +6,7 @@ import { AboutComponent } from './about/about.component';
 const routes: Routes = [
   { path: 'search', component: SearchComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'definition:word', component: FullViewComponent },
+  { path: 'definition/:id', component: FullViewComponent },
   { path: '', redirectTo: '/search', pathMatch: 'full' },
   { path: '**', component: SearchComponent }
 ];
