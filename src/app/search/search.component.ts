@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
         distinctUntilChanged(),
         filter(value => value !== ''),
         // prettier-ignore
-        switchMap( query => query.length > 2 ? this.http.getWords(query) : this.wordList = '')
+        switchMap( query => query.length > 2 ? this.http.getWords(query) : this.wordList = ' ')
       )
       .subscribe(
         data => {

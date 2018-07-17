@@ -1,12 +1,12 @@
 <div class="container-fluid view">
-  <ng-progress [thick]="true" [color]="'red'" [ease]="'easeInSine'"></ng-progress>
+  <ng-progress [thick]="true" [color]="'#ffd747'" [ease]="'easeInSine'"></ng-progress>
   <div class="mask  flex-center">
     <div class="container text-center">
       <h1 class="heading display-4 d-none d-md-block">On the go? Never miss a single word!</h1>
       <h3 class="heading d-md-none">On the go? Never miss a single word!</h3>
       <br>
       <div class="form-inline m-auto mb-4 w-100 flex-center">
-        <input [formControl]="searchField" class="form-control" type="search" placeholder="Enter a Word">
+        <input [formControl]="searchField" class="form-control" type="search" placeholder="Enter more than 3 characters">
         <button class="btn btn-outline-primary btn-rounded btn-sm my-3 waves-light" mdbWavesEffect type="submit">Search</button>
         <ul class="autocomplete-wrap" *ngIf="wordList">
           <li *ngFor="let word of wordList.results ">
