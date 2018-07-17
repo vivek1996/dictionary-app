@@ -12,6 +12,9 @@ import { FullViewComponent } from './full-view/full-view.component';
 import { ApiService } from './api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
+// Progressbar import
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +26,8 @@ import { AboutComponent } from './about/about.component';
     BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgProgressModule.forRoot(),
+    NgProgressHttpModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {

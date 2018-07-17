@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscriber } from '../../../node_modules/rxjs';
 import { ApiService } from '../api.service';
 import { FormControl } from '@angular/forms';
-import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 @Component({
   selector: 'app-search',
@@ -23,6 +21,7 @@ export class SearchComponent implements OnInit {
       .subscribe(data => {
         this.wordList = data;
         console.log(this.wordList);
+        console.log(this.searchField);
       });
   }
   search(value) {
