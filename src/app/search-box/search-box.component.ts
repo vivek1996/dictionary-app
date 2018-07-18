@@ -17,6 +17,7 @@ export class SearchBoxComponent implements OnInit {
   searchField: FormControl = new FormControl();
   wordList: any;
   displayList = false;
+  public href;
   constructor(private router: Router, private http: ApiService) {}
   ngOnInit() {
     this.searchField.valueChanges
@@ -52,11 +53,13 @@ export class SearchBoxComponent implements OnInit {
     }
   }
   onListClick(e) {
+    this.href = this.router.url.split('/');
+    if (this.href.indexOf('definition') > -1) {
+      this.displayList = false;
+    }
     e.stopPropagation();
-    this.router.navigate([
-      '/definition',
-      e.srcElement.children['0'].computedName
-    ]);
-    console.log(e.srcElement.children['0'].computedName);
+    this.router.navigate([e.target.children['0'].pathname]);
+    // console.log(e);
+    // console.log(e.target.children['0'].computedName);
   }
 }
