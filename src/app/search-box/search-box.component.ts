@@ -62,4 +62,19 @@ export class SearchBoxComponent implements OnInit {
     // console.log(e);
     // console.log(e.target.children['0'].computedName);
   }
+  btnClick(value) {
+    // console.log(value);
+    const letters = /^[A-Za-z ]*$/;
+    // const regx: any = ^[a-zA-Z ]*$;
+    // console.log(exp.match(value));
+    // console.log(value.match(letters));
+    const regRes = value.match(letters);
+    console.log(regRes.input);
+    if (regRes === null || value === '') {
+      alert('Please Enter a word');
+    } else {
+      console.log('Proceed');
+      this.router.navigate(['/definition', value]);
+    }
+  }
 }
