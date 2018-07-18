@@ -15,12 +15,14 @@ import { AboutComponent } from './about/about.component';
 // Progressbar import
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
+import { SearchBoxComponent } from './search-box/search-box.component';
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
     FullViewComponent,
-    AboutComponent
+    AboutComponent,
+    SearchBoxComponent
   ],
   imports: [
     BrowserModule,
