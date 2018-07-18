@@ -10,4 +10,7 @@ export class ApiService {
   getWords(word: string) {
     return this.http.get(`/api/search/en?q=${word}&prefix=false&limit=10`);
   }
+  getDefinition(word: string) {
+    return this.http.get(`/api/entries/en/${word}`);
+  }
 }

@@ -45,15 +45,18 @@ export class SearchBoxComponent implements OnInit {
     this.displayList = false;
   }
   onFocus(value) {
-    if(value.length > 0 ) {
+    if (value.length > 0) {
       this.displayList = true;
     } else {
       this.displayList = false;
     }
-
   }
   onListClick(e) {
     e.stopPropagation();
-    console.log(e.srcElement.children["0"].computedName);
+    this.router.navigate([
+      '/definition',
+      e.srcElement.children['0'].computedName
+    ]);
+    console.log(e.srcElement.children['0'].computedName);
   }
 }
