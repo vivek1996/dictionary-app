@@ -10,6 +10,8 @@ import { Location } from '@angular/common';
 })
 export class FullViewComponent implements OnInit {
   public fullData;
+  public resultsObj = {};
+  public lexicalEntries = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -21,13 +23,19 @@ export class FullViewComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.http.getDefinition(routeParams.id).subscribe(
         data => {
-          this.fullData = data.results;
-          console.log(this.fullData);
+          this.fullData = data;
+          this.updateData(this.fullData);
         },
         error => {
           console.log(error);
         }
       );
     });
+  }
+  updateData(data) {
+    this.resultsObj = data.results['0'];
+    console.log(this.resultsObj);
+    this.lexicalEntries = this.resultsObj['lexicalEntries'];
+    console.log(this.lexicalEntries);
   }
 }

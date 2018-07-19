@@ -1,14 +1,23 @@
-<div class="mt-6">
+<div class="mt-6 container-fluid">
   <div class="mt-2 mb-3">
     <app-search-box></app-search-box>
   </div>
-  <div class="jumbotron">
-    <h2 class="h1 h1-responsive">Hello, world!</h2>
-    <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-    <hr class="my-2">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.
-    </p>
-    <a class="btn btn-primary btn-lg waves-light" role="button" mdbWavesEffect>Learn more</a>
+  <div class="jumbotron" *ngIf="fullData">
+    <p> Definition of
+      <span class="text-secondary font-weight-bold">{{ resultsObj.word }}</span> in English ({{ resultsObj.language }}) : </p>
+    <h2 class="h1 h1-responsive red-text"> {{ resultsObj.word | uppercase }} </h2>
+    <hr class="my-1">
+    <div *ngFor="let lexicalEntry of lexicalEntries">
+      <h4 class="blue-text h4-responsive"> {{lexicalEntry.lexicalCategory}} ( {{lexicalEntry.text}} ) </h4>
+      <button class="btn btn-outline-secondary btn-rounded btn-sm waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>Show More </button>
+
+      <div class="" [mdbCollapse]="isCollapsed" #test="bs-collapse">
+        <p> {{lexicalEntry | json}} </p>
+      </div>
+      <hr class="dropdown-divider m-2">
+    </div>
+
+
   </div>
 
 </div>
