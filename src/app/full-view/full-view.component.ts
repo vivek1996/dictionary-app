@@ -12,6 +12,7 @@ export class FullViewComponent implements OnInit {
   public fullData;
   public resultsObj = {};
   public lexicalEntries = [];
+  public residueRemoved = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -36,6 +37,11 @@ export class FullViewComponent implements OnInit {
     this.resultsObj = data.results['0'];
     console.log(this.resultsObj);
     this.lexicalEntries = this.resultsObj['lexicalEntries'];
-    console.log(this.lexicalEntries);
+   // console.log(this.lexicalEntries);
+    this.residueRemoved = this.lexicalEntries.filter( lexicalEntry => lexicalEntry.lexicalCategory !== 'Residual' );
+    console.log(this.residueRemoved);
+  }
+  play(audio) {
+    audio.play();
   }
 }
