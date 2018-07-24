@@ -13,6 +13,8 @@ export class FullViewComponent implements OnInit {
   public resultsObj = {};
   public lexicalEntries = [];
   public residueRemoved = [];
+  public wordOrigin;
+  public grammaticalFeatures = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,13 +37,29 @@ export class FullViewComponent implements OnInit {
   }
   updateData(data) {
     this.resultsObj = data.results['0'];
-    console.log(this.resultsObj);
+    // console.log(this.resultsObj);
     this.lexicalEntries = this.resultsObj['lexicalEntries'];
-   // console.log(this.lexicalEntries);
-    this.residueRemoved = this.lexicalEntries.filter( lexicalEntry => lexicalEntry.lexicalCategory !== 'Residual' );
+    // console.log(this.lexicalEntries);
+    this.residueRemoved = this.lexicalEntries.filter(
+      lexicalEntry => lexicalEntry.lexicalCategory !== 'Residual'
+    );
     console.log(this.residueRemoved);
+    this.extractData(this.residueRemoved);
   }
   play(audio) {
     audio.play();
+  }
+  extractData(data) {
+    for (const singleData of data) {
+      console.log(singleData);
+      this.grammaticalFeatures.push(
+        singleData.entries['0'].grammaticalFeatures
+      );
+      if (singleData.lexicalCategory === 'Noun') {
+        // console.log(singleData.entries['0'].etymologies);
+        this.wordOrigin = singleData.entries['0'].etymologies;
+      }
+    }
+   // console.log(this.grammaticalFeatures);
   }
 }

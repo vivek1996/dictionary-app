@@ -2,33 +2,45 @@
   <div class="mt-2 mb-3">
     <app-search-box></app-search-box>
   </div>
-  <div class="jumbotron" *ngIf="fullData">
+  <div class="jumbotron z-depth-3" *ngIf="fullData">
     <p> Definition of
-      <span class="text-secondary font-weight-bold">{{ resultsObj.word }}</span> in English ({{ resultsObj.language }}) : </p>
-    <h2 class="h1 h1-responsive red-text"> {{ resultsObj.word | uppercase }} </h2>
+      <span class="text-secondary font-weight-bold">{{ resultsObj.word }}</span> in English ({{ resultsObj.language }}) </p>
+    <h1 class="h1-responsive red-text text-capitalize"> {{ resultsObj.word }} </h1>
+    <p *ngIf="wordOrigin" class="lead font-weight-normal">
+      <strong>Origin : </strong>
+      <span class="text-muted">{{wordOrigin}}</span>
+    </p>
     <hr class="my-1">
     <div *ngFor="let lexicalEntry of residueRemoved">
-      <h4 class="blue-text h4-responsive"> {{lexicalEntry.lexicalCategory}} ( {{lexicalEntry.text}} )</h4>
-      <h6>Pronunciations : </h6>
-      <span *ngFor="let pronunciations of lexicalEntry.pronunciations">
+      <h4 class="blue-text h4-responsive">
+        <u>{{lexicalEntry.lexicalCategory}}</u> :
+      </h4>
+      <h6 class="font-weight-normal" *ngIf="lexicalEntry.pronunciations.length > 0">Pronunciations :
+        <span *ngFor="let pronunciations of lexicalEntry.pronunciations">
 
-        <span> {{ pronunciations.phoneticSpelling }}
-          <audio #audio [src]="pronunciations.audioFile"></audio>
-          <a (click)=play(audio)>
-            <i class="fa fa-volume-up" aria-hidden="true"></i>
-          </a>
+          <span> {{ pronunciations.phoneticSpelling }}
+            <audio #audio [src]="pronunciations.audioFile"></audio>
+            <a (click)=play(audio)>
+              <i class="fa fa-volume-up" aria-hidden="true"></i>
+            </a>
+          </span>
         </span>
+      </h6>
+      <p> Definitions :</p>
+      <span *ngFor="let sense of lexicalEntry.entries['0'].senses">
+        <p>
+          <i class="fa fa-arrow-right indigo-text" aria-hidden="true"></i> {{ sense.definitions }} </p>
       </span>
-      <br>
       <button class="btn btn-outline-secondary btn-rounded btn-sm waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>Show More </button>
 
-      <div class="" [mdbCollapse]="isCollapsed" #test="bs-collapse">
-        <p> {{lexicalEntry | json}} </p>
+      <div class=" bg-vio p-2" [mdbCollapse]="isCollapsed" #test="bs-collapse">
+        <!-- <p> {{lexicalEntry.entries["0"].senses | json}} </p> -->
+        <span>Examples :</span>
+        <ul *ngFor="let sense of lexicalEntry.entries['0'].senses">
+          <li> {{ sense.examples[0].text }} </li>
+        </ul>
       </div>
       <hr class="dropdown-divider m-2">
     </div>
 
-
   </div>
-
-</div>
