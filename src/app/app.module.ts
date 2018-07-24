@@ -16,6 +16,10 @@ import { AboutComponent } from './about/about.component';
 import { NgProgressModule } from '@ngx-progressbar/core';
 import { NgProgressHttpModule } from '@ngx-progressbar/http';
 import { SearchBoxComponent } from './search-box/search-box.component';
+// Toster import
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +35,9 @@ import { SearchBoxComponent } from './search-box/search-box.component';
     NgProgressModule.forRoot(),
     NgProgressHttpModule,
     MDBBootstrapModule.forRoot(),
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     ServiceWorkerModule.register('/ngsw-worker.js', {
       enabled: environment.production

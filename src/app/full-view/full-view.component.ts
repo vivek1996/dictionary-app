@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-full-view',
@@ -19,7 +20,8 @@ export class FullViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private http: ApiService,
-    private location: Location
+    private location: Location,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class FullViewComponent implements OnInit {
         }
       );
     });
+    this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
   }
   updateData(data) {
     this.resultsObj = data.results['0'];
@@ -60,6 +63,6 @@ export class FullViewComponent implements OnInit {
         this.wordOrigin = singleData.entries['0'].etymologies;
       }
     }
-   // console.log(this.grammaticalFeatures);
+    // console.log(this.grammaticalFeatures);
   }
 }
