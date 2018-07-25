@@ -15,7 +15,8 @@ export class FullViewComponent implements OnInit {
   public lexicalEntries = [];
   public residueRemoved = [];
   public wordOrigin;
-  public grammaticalFeatures = [];
+  public varientForms = [];
+  public isCollapse;
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -39,30 +40,29 @@ export class FullViewComponent implements OnInit {
   }
   updateData(data) {
     this.resultsObj = data.results['0'];
-    // console.log(this.resultsObj);
     this.lexicalEntries = this.resultsObj['lexicalEntries'];
-    // console.log(this.lexicalEntries);
+    // Remove Residue data from the full data
     this.residueRemoved = this.lexicalEntries.filter(
       lexicalEntry => lexicalEntry.lexicalCategory !== 'Residual'
     );
-    console.log(this.residueRemoved);
+    this.varientForms = []; // make varientForms array empty
     this.extractData(this.residueRemoved);
   }
   play(audio) {
-    audio.play();
+    audio.play(); // play audio on clicking speak icon
   }
   extractData(data) {
     for (const singleData of data) {
       console.log(singleData);
-      this.grammaticalFeatures.push(
-        singleData.entries['0'].grammaticalFeatures
-      );
+      // Extracting Word Origin data
       if (singleData.entries['0'].etymologies) {
-        // console.log(singleData.entries['0'].etymologies);
         this.wordOrigin = singleData.entries['0'].etymologies;
       }
+      // Extracting Varient Forms data
+      if (singleData.entries['0'].hasOwnProperty('variantForms')) {
+        this.varientForms.push(singleData.entries['0'].variantForms['0'].text);
+      }
     }
-    // console.log(this.grammaticalFeatures);
     this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
   }
 }

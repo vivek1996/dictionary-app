@@ -31,10 +31,11 @@
         <p>
           <i class="fa fa-arrow-right indigo-text" aria-hidden="true"></i> {{ sense.definitions }} </p>
       </span>
-      <button class="btn btn-outline-secondary btn-rounded btn-sm waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>Show More </button>
+      <button class="btn btn-outline-secondary btn-rounded btn-sm waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>Show More
+        <i class="fa ml-1" [ngClass]="isCollapse ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
+      </button>
 
-      <div class=" bg-vio p-2" [mdbCollapse]="isCollapsed" #test="bs-collapse">
-        <!-- <p> {{lexicalEntry.entries["0"].senses | json}} </p> -->
+      <div class=" bg-vio p-2" [mdbCollapse]="isCollapsed" #test="bs-collapse" (hideBsCollapse)="isCollapse = true" (showBsCollapse)="isCollapse = false">
         <div *ngIf="lexicalEntry.entries['0'].senses">
           <span>Examples :</span>
           <ul *ngFor="let senses of lexicalEntry.entries['0'].senses">
@@ -46,11 +47,10 @@
       <hr class="dropdown-divider m-2">
 
     </div>
-    <div class="card  pink darken-1 z-depth-2">
+    <div class="card  pink darken-1 z-depth-2" *ngIf="varientForms.length > 0">
       <div class="card-body">
-        <span class="white-text mb-0">Variant Forms : </span>
-        <span class="white-text mb-0" *ngFor="let lexicalEntry of residueRemoved">
-          <span *ngFor="let forms of lexicalEntry.entries['0'].variantForms">{{ forms.text }} / </span>
+        <span class="white-text mb-0">
+          <span>Variant Forms : {{ varientForms }}</span>
         </span>
       </div>
     </div>
