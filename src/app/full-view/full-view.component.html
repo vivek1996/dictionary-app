@@ -31,11 +31,12 @@
         <p>
           <i class="fa fa-arrow-right indigo-text" aria-hidden="true"></i> {{ sense.definitions }} </p>
       </span>
-      <button class="btn btn-outline-secondary btn-rounded btn-sm waves-light" type="button" (click)="test.toggle()" mdbWavesEffect>Show More
-        <i class="fa ml-1" [ngClass]="isCollapse ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
+      <button class="btn btn-outline-secondary btn-rounded btn-sm waves-light" type="button" (click)="test.toggle()" (click)="show = !show"
+        mdbWavesEffect>Show More
+        <i class="fa ml-1" [ngClass]="show ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
       </button>
 
-      <div class=" bg-vio p-2" [mdbCollapse]="isCollapsed" #test="bs-collapse" (hideBsCollapse)="isCollapse = true" (showBsCollapse)="isCollapse = false">
+      <div class=" bg-vio p-2" [mdbCollapse]="isCollapsed" #test="bs-collapse">
         <div *ngIf="lexicalEntry.entries['0'].senses">
           <span>Examples :</span>
           <ul *ngFor="let senses of lexicalEntry.entries['0'].senses">
@@ -51,6 +52,20 @@
       <div class="card-body">
         <span class="white-text mb-0">
           <span>Variant Forms : {{ varientForms }}</span>
+        </span>
+      </div>
+    </div>
+    <div class="card  pink darken-1 z-depth-2 mt-2" *ngIf="notes.length > 0">
+      <div class="card-body">
+        <span class="white-text mb-0">
+          <span>Notes : </span>
+          <ul class="list-group">
+            <li class="list-group-item black-text" *ngFor="let note of notes">
+              <span class=" font-weight-bold blue-text">{{note.type | uppercase}} :</span>
+              <span> {{note.text}}</span>
+            </li>
+          </ul>
+
         </span>
       </div>
     </div>

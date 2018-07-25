@@ -16,7 +16,8 @@ export class FullViewComponent implements OnInit {
   public residueRemoved = [];
   public wordOrigin;
   public varientForms = [];
-  public isCollapse;
+  public show = true;
+  public notes = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -62,7 +63,16 @@ export class FullViewComponent implements OnInit {
       if (singleData.entries['0'].hasOwnProperty('variantForms')) {
         this.varientForms.push(singleData.entries['0'].variantForms['0'].text);
       }
+      // "MyCamelCaseString".replace(/([a-z](?=[A-Z]))/g, '$1 ')
+      // Extract notes
+      if (singleData.entries['0'].hasOwnProperty('notes')) {
+        // console.log(singleData.entries['0'].notes);
+        for (const note of singleData.entries['0'].notes) {
+          this.notes.push(note);
+        }
+      }
     }
+    console.log(this.notes);
     this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
   }
 }
