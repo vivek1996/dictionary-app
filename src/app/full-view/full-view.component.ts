@@ -36,7 +36,6 @@ export class FullViewComponent implements OnInit {
         }
       );
     });
-    this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
   }
   updateData(data) {
     this.resultsObj = data.results['0'];
@@ -58,11 +57,12 @@ export class FullViewComponent implements OnInit {
       this.grammaticalFeatures.push(
         singleData.entries['0'].grammaticalFeatures
       );
-      if (singleData.lexicalCategory === 'Noun') {
+      if (singleData.entries['0'].etymologies) {
         // console.log(singleData.entries['0'].etymologies);
         this.wordOrigin = singleData.entries['0'].etymologies;
       }
     }
     // console.log(this.grammaticalFeatures);
+    this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
   }
 }

@@ -5,7 +5,7 @@
   <div class="jumbotron z-depth-3" *ngIf="fullData">
     <p> Definition of
       <span class="text-secondary font-weight-bold">{{ resultsObj.word }}</span> in English ({{ resultsObj.language }}) </p>
-    <h1 class="h1-responsive red-text text-capitalize"> {{ resultsObj.word }} </h1>
+    <h1 class="h1 red-text text-capitalize"> {{ resultsObj.word }} </h1>
     <p *ngIf="wordOrigin" class="lead font-weight-normal">
       <strong>Origin : </strong>
       <span class="text-muted">{{wordOrigin}}</span>
@@ -35,12 +35,23 @@
 
       <div class=" bg-vio p-2" [mdbCollapse]="isCollapsed" #test="bs-collapse">
         <!-- <p> {{lexicalEntry.entries["0"].senses | json}} </p> -->
-        <span>Examples :</span>
-        <ul *ngFor="let sense of lexicalEntry.entries['0'].senses">
-          <li> {{ sense.examples[0].text }} </li>
-        </ul>
+        <div *ngIf="lexicalEntry.entries['0'].senses">
+          <span>Examples :</span>
+          <ul *ngFor="let senses of lexicalEntry.entries['0'].senses">
+            <li *ngFor="let example of senses.examples"> {{ example.text }} </li>
+          </ul>
+        </div>
+
       </div>
       <hr class="dropdown-divider m-2">
-    </div>
 
+    </div>
+    <div class="card  pink darken-1 z-depth-2">
+      <div class="card-body">
+        <span class="white-text mb-0">Variant Forms : </span>
+        <span class="white-text mb-0" *ngFor="let lexicalEntry of residueRemoved">
+          <span *ngFor="let forms of lexicalEntry.entries['0'].variantForms">{{ forms.text }} / </span>
+        </span>
+      </div>
+    </div>
   </div>
