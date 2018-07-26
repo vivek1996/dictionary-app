@@ -18,6 +18,9 @@ export class FullViewComponent implements OnInit {
   public varientForms = [];
   public show = true;
   public notes = [];
+  public currentWord;
+  public antonyms = [];
+  public synonyms = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -28,6 +31,7 @@ export class FullViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
+      this.currentWord = routeParams.id;
       this.http.getDefinition(routeParams.id).subscribe(
         data => {
           this.fullData = data;
@@ -47,6 +51,8 @@ export class FullViewComponent implements OnInit {
       lexicalEntry => lexicalEntry.lexicalCategory !== 'Residual'
     );
     this.varientForms = []; // make varientForms array empty
+    this.antonyms = [];
+    this.synonyms = [];
     this.extractData(this.residueRemoved);
   }
   play(audio) {
@@ -73,6 +79,19 @@ export class FullViewComponent implements OnInit {
       }
     }
     console.log(this.notes);
+    this.getSyn();
     this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
+  }
+  getSyn() {
+    this.http.getSynAnt(this.currentWord).subscribe(data => {
+      const datas = data;
+     // console.log(datas.results['0'].lexicalEntries);
+      this.seprateData(datas.results['0'].lexicalEntries);
+    });
+  }
+  seprateData(datas) {
+    for (const data of datas) {
+      console.log(data.entries['0'].senses);
+    }
   }
 }

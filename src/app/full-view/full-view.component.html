@@ -69,4 +69,36 @@
         </span>
       </div>
     </div>
+    <hr class="dropdown-divider m-2">
+    <div class="row">
+      <div class="col-md-6">
+        <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="syn1.toggle()" (click)="show = !show"
+          mdbWavesEffect>
+          synonyms
+          <i class="fa ml-1" [ngClass]="show ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
+        </button>
+
+        <div class="card indigo text-center z-depth-2" [mdbCollapse]="isCollapsed" #syn1="bs-collapse">
+            <div class="card-body">
+                <p class="white-text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                    erat a ante.</p>
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+          <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="ant.toggle()" (click)="show = !show"
+            mdbWavesEffect>
+            antonyms
+            <i class="fa ml-1" [ngClass]="show ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
+          </button>
+
+          <div class="card indigo text-center z-depth-2" [mdbCollapse]="isCollapsed" #ant="bs-collapse">
+              <div class="card-body">
+              <p class="white-text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
+                  erat a ante.</p>
+          </div>
+          </div>
+        </div>
+    </div>
+
   </div>

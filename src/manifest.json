@@ -4,6 +4,7 @@
   "theme_color": "#8717c4",
   "background_color": "#1773c4",
   "display": "standalone",
+  "description": "Dictionary Application",
   "scope": "/",
   "start_url": "/",
   "icons": [
