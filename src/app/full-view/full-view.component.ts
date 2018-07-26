@@ -38,7 +38,7 @@ export class FullViewComponent implements OnInit {
           this.updateData(this.fullData);
         },
         error => {
-          console.log(error);
+          this.handleError(error);
         }
       );
     });
@@ -61,7 +61,7 @@ export class FullViewComponent implements OnInit {
   }
   extractData(data) {
     for (const singleData of data) {
-      console.log(singleData);
+     // console.log(singleData);
       // Extracting Word Origin data
       if (singleData.entries['0'].etymologies) {
         this.wordOrigin = singleData.entries['0'].etymologies;
@@ -83,14 +83,20 @@ export class FullViewComponent implements OnInit {
       }
     }
     this.getSyn();
-    this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
+    this.toastr.success(`Definition of ${this.resultsObj['word']} is Loaded 😉`);
   }
   getSyn() {
-    this.http.getSynAnt(this.currentWord).subscribe(data => {
+    this.http.getSynAnt(this.currentWord).subscribe(
+      data => {
       const datas = data;
       // console.log(datas.results['0'].lexicalEntries);
       this.seprateData(datas);
-    });
+    },
+    error => {
+     // this.handleError(error);
+     console.log(error);
+    }
+  );
   }
   seprateData(datas) {
     const synonyms = [];
@@ -129,5 +135,20 @@ export class FullViewComponent implements OnInit {
     });
    // console.log(this.antonyms);
    this.antonyms = sortBy(uniq(temp));
+  }
+  handleError(error) {
+    if (error.status === 404 || error.status === 414) {
+      this.toastr.error(`Try Again with valid word😭`, `${error.statusText}`);
+    } else if (error.status === 403) {
+      this.toastr.error(`Details in About Page🙇`, `Contact Developer`);
+    } else if (error.status === 500) {
+      this.toastr.warning(`Something is broken 💔`, `Contact Developer`);
+    } else if (error.status === 502) {
+      this.toastr.info(`Oxford Dictionaries API is down or being upgraded 👻`, `Bad Gateway`);
+    } else if (error.status === 503) {
+      this.toastr.info(`Please try again later 😕`, `Service Unavailable`);
+    } else if (error.status === 504) {
+      this.toastr.info(`Please try again later 😥`, `Gateway timeout`);
+    }
   }
 }

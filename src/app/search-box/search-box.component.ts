@@ -8,6 +8,7 @@ import {
   switchMap,
   filter
 } from 'rxjs/operators';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
@@ -18,7 +19,7 @@ export class SearchBoxComponent implements OnInit {
   wordList: any;
   displayList = false;
   public href;
-  constructor(private router: Router, private http: ApiService) {}
+  constructor(private router: Router, private http: ApiService, private toastr: ToastrService) {}
   ngOnInit() {
     this.searchField.valueChanges
       .pipe(
@@ -34,10 +35,26 @@ export class SearchBoxComponent implements OnInit {
           this.wordList = '';
           this.displayList = true;
           this.wordList = data;
+          if (data['metadata'].total === 0) {
+            this.toastr.error(`Try Again with valid word 😕`);
+          }
           console.log(this.wordList);
         },
         error => {
           console.log(error);
+          if (error.status === 404 || error.status === 414) {
+            this.toastr.error(`Try Again with valid word😭`, `${error.statusText}`);
+          } else if (error.status === 403) {
+            this.toastr.error(`Details in About Page🙇`, `Contact Developer`);
+          } else if (error.status === 500) {
+            this.toastr.warning(`Something is broken 💔`, `Contact Developer`);
+          } else if (error.status === 502) {
+            this.toastr.info(`Oxford Dictionaries API is down or being upgraded 👻`, `Bad Gateway`);
+          } else if (error.status === 503) {
+            this.toastr.info(`Please try again later 😕`, `Service Unavailable`);
+          } else if (error.status === 504) {
+            this.toastr.info(`Please try again later 😥`, `Gateway timeout`);
+          }
         }
       );
   }

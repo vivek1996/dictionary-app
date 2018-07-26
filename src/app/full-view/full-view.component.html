@@ -69,9 +69,9 @@
         </span>
       </div>
     </div>
-    <hr class="dropdown-divider m-2">
+    <hr class="dropdown-divider m-2" *ngIf="synonyms.length > 0">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12" *ngIf="synonyms.length > 0">
         <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="syn1.toggle()"
           (click)="show = !show" mdbWavesEffect>
           synonyms
@@ -86,7 +86,8 @@
           </div>
         </div>
       </div>
-      <div class="col-12">
+      <hr class="dropdown-divider m-2" *ngIf="antonyms.length > 0">
+      <div class="col-12" *ngIf="antonyms.length > 0">
         <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="ant.toggle()" (click)="show = !show"
           mdbWavesEffect>
           antonyms
