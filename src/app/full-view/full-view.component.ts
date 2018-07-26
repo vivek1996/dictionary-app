@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../api.service';
 import { Location } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
-
+import { unionBy, uniq, sortBy } from 'lodash-es';
 @Component({
   selector: 'app-full-view',
   templateUrl: './full-view.component.html',
@@ -16,7 +16,7 @@ export class FullViewComponent implements OnInit {
   public residueRemoved = [];
   public wordOrigin;
   public varientForms = [];
-  public show = true;
+  public show = false;
   public notes = [];
   public currentWord;
   public antonyms = [];
@@ -53,6 +53,7 @@ export class FullViewComponent implements OnInit {
     this.varientForms = []; // make varientForms array empty
     this.antonyms = [];
     this.synonyms = [];
+    this.notes = [];
     this.extractData(this.residueRemoved);
   }
   play(audio) {
@@ -73,25 +74,60 @@ export class FullViewComponent implements OnInit {
       // Extract notes
       if (singleData.entries['0'].hasOwnProperty('notes')) {
         // console.log(singleData.entries['0'].notes);
+        const temp = [];
         for (const note of singleData.entries['0'].notes) {
-          this.notes.push(note);
+          temp.push(note);
         }
+        const not = unionBy(temp, 'text');
+        this.notes = not;
       }
     }
-    console.log(this.notes);
     this.getSyn();
     this.toastr.info(`Definition of ${this.resultsObj['word']} is Loaded`);
   }
   getSyn() {
     this.http.getSynAnt(this.currentWord).subscribe(data => {
       const datas = data;
-     // console.log(datas.results['0'].lexicalEntries);
-      this.seprateData(datas.results['0'].lexicalEntries);
+      // console.log(datas.results['0'].lexicalEntries);
+      this.seprateData(datas);
     });
   }
   seprateData(datas) {
-    for (const data of datas) {
-      console.log(data.entries['0'].senses);
+    const synonyms = [];
+    const antonyms = [];
+    for (const data of datas.results['0'].lexicalEntries) {
+      // console.log(data.entries['0'].senses);
+      for (const syn of data.entries['0'].senses) {
+        if (syn.synonyms) {
+          synonyms.push(syn.synonyms);
+        }
+        if (syn.antonyms) {
+          antonyms.push(syn.antonyms);
+        }
+      }
     }
+    this.seperateSyn(synonyms);
+    this.seperateAnt(antonyms);
+  }
+  // Seperate antonyms and synonyms
+  seperateSyn(data) {
+    const temp = [];
+    data.map(i => {
+      i.map(j => {
+        temp.push(j.text);
+      });
+    });
+    // console.log(sortBy(uniq(temp)));
+    this.synonyms = sortBy(uniq(temp));
+  }
+  seperateAnt(data) {
+    const temp = [];
+    data.map(i => {
+      i.map(j => {
+        temp.push(j.text);
+      });
+    });
+   // console.log(this.antonyms);
+   this.antonyms = sortBy(uniq(temp));
   }
 }

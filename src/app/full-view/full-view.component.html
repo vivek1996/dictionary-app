@@ -33,14 +33,14 @@
       </span>
       <button class="btn btn-outline-secondary btn-rounded btn-sm waves-light" type="button" (click)="test.toggle()" (click)="show = !show"
         mdbWavesEffect>Show More
-        <i class="fa ml-1" [ngClass]="show ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
+        <i class="fa ml-1" [ngClass]="show ? 'fa-minus' : 'fa-plus'" aria-hidden="true"></i>
       </button>
 
       <div class=" bg-vio p-2" [mdbCollapse]="isCollapsed" #test="bs-collapse">
         <div *ngIf="lexicalEntry.entries['0'].senses">
           <span>Examples :</span>
           <ul *ngFor="let senses of lexicalEntry.entries['0'].senses">
-            <li *ngFor="let example of senses.examples"> {{ example.text }} </li>
+            <li #eg *ngFor="let example of senses.examples"> {{ example.text }} </li>
           </ul>
         </div>
 
@@ -71,34 +71,36 @@
     </div>
     <hr class="dropdown-divider m-2">
     <div class="row">
-      <div class="col-md-6">
-        <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="syn1.toggle()" (click)="show = !show"
-          mdbWavesEffect>
+      <div class="col-12">
+        <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="syn1.toggle()"
+          (click)="show = !show" mdbWavesEffect>
           synonyms
-          <i class="fa ml-1" [ngClass]="show ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
+          <i class="fa ml-1" [ngClass]="show ? 'fa-minus' : 'fa-plus'" aria-hidden="true"></i>
         </button>
 
-        <div class="card indigo text-center z-depth-2" [mdbCollapse]="isCollapsed" #syn1="bs-collapse">
-            <div class="card-body">
-                <p class="white-text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                    erat a ante.</p>
-            </div>
+        <div class="card indigo z-depth-2" [mdbCollapse]="isCollapsed" #syn1="bs-collapse">
+          <div class="card-body">
+            <ul class="list-inline white-text mb-0">
+              <li class="list-inline-item" *ngFor="let syn of synonyms;let last=last"> {{syn}}{{last ? ' ' : ', '}} </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="col-md-6">
-          <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="ant.toggle()" (click)="show = !show"
-            mdbWavesEffect>
-            antonyms
-            <i class="fa ml-1" [ngClass]="show ? 'fa-plus' : 'fa-minus'" aria-hidden="true"></i>
-          </button>
+      <div class="col-12">
+        <button class="btn btn-outline-primary btn-rounded btn-sm waves-light text-center" type="button" (click)="ant.toggle()" (click)="show = !show"
+          mdbWavesEffect>
+          antonyms
+          <i class="fa ml-1" [ngClass]="show ? 'fa-minus' : 'fa-plus'" aria-hidden="true"></i>
+        </button>
 
-          <div class="card indigo text-center z-depth-2" [mdbCollapse]="isCollapsed" #ant="bs-collapse">
-              <div class="card-body">
-              <p class="white-text mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere
-                  erat a ante.</p>
-          </div>
+        <div class="card indigo z-depth-2" [mdbCollapse]="isCollapsed" #ant="bs-collapse">
+          <div class="card-body">
+            <ul class="list-inline white-text mb-0">
+              <li class="list-inline-item" *ngFor="let syn of antonyms;let last=last"> {{syn}}{{last ? ' ' : ', '}} </li>
+            </ul>
           </div>
         </div>
+      </div>
     </div>
 
   </div>
