@@ -38,7 +38,7 @@ export class SearchBoxComponent implements OnInit {
           // if (data['metadata']['total'].length === 0) {
           //   this.toastr.error(`Try Again with valid word 😕`);
           // }
-          console.log(this.wordList);
+         // console.log(this.wordList);
         },
         error => {
           console.log(error);
@@ -86,11 +86,11 @@ export class SearchBoxComponent implements OnInit {
     // console.log(exp.match(value));
     // console.log(value.match(letters));
     const regRes = value.match(letters);
-    console.log(regRes.input);
+   // console.log(regRes.input);
     if (regRes === null || value === '') {
       alert('Please Enter a word');
     } else {
-      console.log('Proceed');
+     // console.log('Proceed');
       this.router.navigate(['/definition', value]);
     }
   }

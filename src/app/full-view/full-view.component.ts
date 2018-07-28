@@ -54,6 +54,7 @@ export class FullViewComponent implements OnInit {
     this.antonyms = [];
     this.synonyms = [];
     this.notes = [];
+	this.wordOrigin = '';
     this.extractData(this.residueRemoved);
   }
   play(audio) {
