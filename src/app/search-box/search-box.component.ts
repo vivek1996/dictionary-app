@@ -35,9 +35,9 @@ export class SearchBoxComponent implements OnInit {
           this.wordList = '';
           this.displayList = true;
           this.wordList = data;
-          if (data['metadata'].total === 0) {
-            this.toastr.error(`Try Again with valid word 😕`);
-          }
+           if (data['metadata']['total'].length === 0) {
+             this.toastr.error(`Try Again with valid word 😕`);
+           }
           console.log(this.wordList);
         },
         error => {
