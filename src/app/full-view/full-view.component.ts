@@ -30,6 +30,7 @@ export class FullViewComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // Get the parameter from the URL
     this.route.params.subscribe(routeParams => {
       this.currentWord = routeParams.id;
       this.http.getDefinition(routeParams.id).subscribe(
@@ -50,11 +51,12 @@ export class FullViewComponent implements OnInit {
     this.residueRemoved = this.lexicalEntries.filter(
       lexicalEntry => lexicalEntry.lexicalCategory !== 'Residual'
     );
-    this.varientForms = []; // make varientForms array empty
+    // make  arrays empty for the new data
+    this.varientForms = [];
     this.antonyms = [];
     this.synonyms = [];
     this.notes = [];
-	this.wordOrigin = '';
+    this.wordOrigin = '';
     this.extractData(this.residueRemoved);
   }
   play(audio) {
@@ -86,6 +88,7 @@ export class FullViewComponent implements OnInit {
     this.getSyn();
     this.toastr.success(`Definition of ${this.resultsObj['word']} is Loaded 😉`);
   }
+  // API request to get the synonyms and antonynms
   getSyn() {
     this.http.getSynAnt(this.currentWord).subscribe(
       data => {
@@ -99,6 +102,7 @@ export class FullViewComponent implements OnInit {
     }
   );
   }
+  // Seprate Synonyms and Antonyms from the stock data into their arrays
   seprateData(datas) {
     const synonyms = [];
     const antonyms = [];
@@ -137,6 +141,7 @@ export class FullViewComponent implements OnInit {
    // console.log(this.antonyms);
    this.antonyms = sortBy(uniq(temp));
   }
+  // Function to handle error responses from the API server
   handleError(error) {
     if (error.status === 404 || error.status === 414) {
       this.toastr.error(`Try Again with valid word😭`, `${error.statusText}`);
