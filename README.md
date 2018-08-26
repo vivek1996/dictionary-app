@@ -4,8 +4,9 @@
   <a href="https://github.com/vivek1996/dictionary-app/network"><img src="https://img.shields.io/github/forks/vivek1996/dictionary-app.svg?style=flat-square" alt="GitHub forks"></a>
     <a href="https://github.com/vivek1996/dictionary-app/stargazers"><img src="https://img.shields.io/github/stars/vivek1996/dictionary-app.svg?style=flat-square" alt="GitHub stars"></a>
   <a href="https://david-dm.org/vivek1996/dictionary-app"><img src="https://david-dm.org/vivek1996/dictionary-app.svg" alt="DEPENDENCIES"></a>
+  <a href="https://david-dm.org/vivek1996/dictionary-app"><img src="https://forthebadge.com/images/badges/built-with-love.svg" alt="forthebadge"></a>
 </p>
-
+<br>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
