@@ -2,7 +2,8 @@
 <p align="center">
   <a href="https://github.com/vivek1996/dictionary-app/issues"><img src="https://img.shields.io/github/issues/vivek1996/dictionary-app.svg?style=flat-square" alt="GitHub issues"></a>
   <a href="https://github.com/vivek1996/dictionary-app/network"><img src="https://img.shields.io/github/forks/vivek1996/dictionary-app.svg?style=flat-square" alt="GitHub forks"></a>
-    <a href="https://david-dm.org/vivek1996/dictionary-app"><img src="https://david-dm.org/vivek1996/dictionary-app.svg" alt="DEPENDENCIES"></a>
+    <a href="https://github.com/vivek1996/dictionary-app/stargazers"><img src="https://img.shields.io/github/stars/vivek1996/dictionary-app.svg?style=flat-square" alt="GitHub stars"></a>
+  <a href="https://david-dm.org/vivek1996/dictionary-app"><img src="https://david-dm.org/vivek1996/dictionary-app.svg" alt="DEPENDENCIES"></a>
 </p>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
