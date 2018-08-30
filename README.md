@@ -10,6 +10,47 @@
 <br>
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
+# Problem Statement
+
+## Project Description -
+The aim of the project is to create a dictionary application using Angular. You will be
+using Oxford dictionary’s open API as your backend and the frontend application that is
+to be created by you must have all the features mentioned later. Application UI should
+be designed by yourself using Bootstrap. You are not allowed to use bootstrap
+template available on internet. The code should be entirely yours.
+Before we jump into the feature list, let's look at our API and how to use it.
+## About the API -
+Oxford Dictionaries API is an open source dictionary API which gives you access to all
+the data that is used by oxford dictionary website. Here is how you can use the API -
+Step 1 - Go to https://developer.oxforddictionaries.com and click on Get your API Key.
+Step 2 - Select the Free plan which gives you access to 3k requests per month. We
+think that many requests should be sufficient for your overall project development,
+however if you discover that you need more, just create another free account using a
+different email id. Do not select a paid pricing plan!
+Step 3 - Once you have signed up. Get your APP key and ID
+Step 4 - Check out this guide on how to make request to this API
+Step 5 - Follow this API Documentation to select the suitable API for your application
+feature
+## Features of the Application -
+1) Search page - The home page of the application should be a search page with
+option to search a particular word in the dictionary. The search box should show
+suggestions only after first 3 characters have been typed in the search box. The
+search box should also show autocomplete suggestions while typing the words in
+the search box. Take example from the search box on the home page of oxford
+dictionary . You have to create a custom component of your own for this ( do not
+use an external NPM module or library for this) . There should be a search
+button to enable user to search the word. On clicking search or on clicking the
+word on the autocomplete list, a full page view of that word should open
+2) Full page view of the word - On clicking the word in autocomplete list or
+pressing search button in previous view, a full page view of the word should
+open. It should display all the information about that word. Take example from
+this word page of oxford dictionary where the word “something” has been
+searched. As displayed on the page, your view should display all meanings, use
+of the word in phrases etc. It should also display the synonyms and antonyms of
+the words(if any). Select the relevant API from the API documentation yourself.
+3) Error Views - Check out the HTTP response codes for this API. You have to
+handle each error response with a different page.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
