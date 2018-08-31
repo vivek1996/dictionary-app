@@ -51,6 +51,43 @@ the words(if any). Select the relevant API from the API documentation yourself.
 3) Error Views - Check out the HTTP response codes for this API. You have to
 handle each error response with a different page.
 
+
+# Project Description :
+   The front end of the application is built with angular and it is hosted in the **AWS EC2** Instance. mdbootstrap is used for page creating layouts. 
+  
+   The application has 2 main views. 
+
+ - Home view
+ -  Definition view
+
+ The home view is the app shell. The search input is a separate component as it is used in both the views. 
+
+  The Application uses 3 different API endpoints to get data. One for getting the search suggestions as user types and others are to retrieve the full data of a word and synonyms, antonyms respectively.
+
+   The search input component uses rxjs operators *debounceTime, distinctUntilChanged, switchMap, filter* to prevent unnecessary API requests to the server.
+
+ - Listen for data from an input.
+
+- Trim the value (remove whitespace) and make sure it’s a minimum length (3).
+- Debounce (so as not to send off API requests for every keystroke, but instead wait for a break in keystrokes).
+- Don’t send a request if the value stays the same (rapidly hit a character, then backspace, for instance).
+- Cancel ongoing AJAX requests if their results will be invalidated by the updated results.
+
+  
+The ngx-progressbar and ngx-toaster external libraries to enhance the user experience. The toaster is used to notify the user about the successful and unsuccessful API requests and ngx-progressbar is used to show the visualization of HTTP requests.
+
+   As the user types in the search box, the suggestions are displayed after clicking any of those suggestions the definition view is opened which contains origin, synonyms & antonyms (If available) and meaning with examples.
+
+The data in the definition view is separated based on the grammatical type and each has the option for the user to hear the pronunciation of the word.
+
+   The Application has the manifest.json which turns it to a PWA (Progressive Web App). The service workers are included for offline usage of the application and asset caching. (service workers only work in production build)
+    The API does not currently support CORS requests due to the potential implications for the security of their server the application uses the proxy server to get the response from the API. Check out here 
+(https://forum.oxforddictionaries.com/api/discussion/18/error-message-no-access-control-allow-origin-or-i-can-t-get-my-client-side-request-to-work).
+
+### P.S:
+The Development version is hosted in AWS and served with the webpack-dev-server, which is used in development. The nginx is configured to redirect all requests for the domain https://lexicon.vivekm.me to the localhost:4200 using proxy_pass as the API does not support CORS requests and client-side requests. The development server is added as the background process in the server using the forever npm package.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
