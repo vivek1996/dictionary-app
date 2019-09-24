@@ -1,4 +1,7 @@
 # Dictionary
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/vivek1996/dictionary-app.svg)](https://greenkeeper.io/)
+
 <p align="center">
   <a href="https://github.com/vivek1996/dictionary-app/issues"><img src="https://img.shields.io/github/issues/vivek1996/dictionary-app.svg?style=flat-square" alt="GitHub issues"></a>
   <a href="https://github.com/vivek1996/dictionary-app/network"><img src="https://img.shields.io/github/forks/vivek1996/dictionary-app.svg?style=flat-square" alt="GitHub forks"></a>
